@@ -9,7 +9,9 @@
 **Problem summary:**
 When retrieving context chunks for the RAG pipeline, a chunk's `text` field can sometimes be `None` instead of an empty string or missing entirely. The `FaithfulnessChecker.check()` method uses `chunk.get("text", "")` to build context text, but `.get()`'s default only applies when the key is missing — not when the value is `None`. This causes `" ".join(...)` to raise a `TypeError` since it can't join a `NoneType`. This affects `rag/evaluator/faithfulness_checker.py`, part of the RAG pipeline's hallucination-detection safeguard. A successful fix would treat a `None` text value the same as empty text, returning a faithfulness score without crashing.
 
-**Branch name:** fix/153-context-chunk-text-none-error
+**"Is this right for me?" checklist reasoning:** I chose issue #153 for two reasons. First, navigating a new codebase and opening my first pull request is new to me, and this issue is tagged good-first-issue and tier-1, making it an appropriate entry point. Second, RAG is within my scope of understanding — I know what its inputs are and what it returns — so I could reason about the bug's root cause rather than just pattern-matching a fix.
+
+**Branch name:** fix/153-context-chunk-text-error
 
 **Setup confirmation:** [ ✅] App runs locally at localhost:5173
 
