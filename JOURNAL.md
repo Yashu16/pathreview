@@ -16,3 +16,13 @@ When retrieving context chunks for the RAG pipeline, a chunk's `text` field can 
 **Setup confirmation:** [ ✅] App runs locally at localhost:5173
 
 **Cohort ledger:** [✅ ] Issue added to cohort ledger
+
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** [link to commit documenting the reproduced issue]
+
+**Reproduction summary:**
+I ran the existing test `test_none_context_chunk_text` in `tests/unit/test_faithfulness_checker.py`, which passes a context chunk with `{"text": None}`. Instead of returning a faithfulness score between 0.0 and 1.0, it raised `TypeError: sequence item 0: expected str instance, NoneType found`, confirming the bug.
+
+**PLAN.md link:** [link to PLAN.md in your fork]
