@@ -26,4 +26,4 @@ When retrieving context chunks for the RAG pipeline, a chunk's `text` field can 
 **Reproduction summary:**
 I ran the existing test `test_none_context_chunk_text` in `tests/unit/test_faithfulness_checker.py`, which passes a context chunk with `{"text": None}`. Instead of returning a faithfulness score between 0.0 and 1.0, it raised `TypeError: sequence item 0: expected str instance, NoneType found`, confirming the bug.
 
-**PLAN.md link:** [link to PLAN.md in your fork]
+**PLAN.md link:** https://github.com/Yashu16/pathreview/blob/fix/153-context-chunk-text-error/PLAN.md
