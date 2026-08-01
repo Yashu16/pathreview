@@ -33,6 +33,11 @@ What could go wrong? What are you still unsure about?
 - I haven't checked whether other parts of the RAG pipeline (e.g. the retriever or ingestion code) can also produce chunks with `None` text — if so, this fix only patches the symptom in `FaithfulnessChecker`, not the upstream cause of why `text` is ever `None` in the first place.
 - I'm not fully certain this is the only place in the codebase with the same `.get(key, default)` pitfall — similar bugs could exist elsewhere if other files use the same chunk structure.
 
+**Pre-existing baseline (before my fix):**
+- `make check` (lint/format/typecheck): fails with 182 pre-existing ruff errors across many unrelated files (e.g. `safety/content_filter.py`, `tests/unit/test_tech_detector.py`) — none in `rag/evaluator/faithfulness_checker.py`.
+- `make test-unit`: 53 failed, 375 passed (pre-existing, unrelated to issue #153).
+- After applying my fix, I will re-run both commands and confirm the failure counts don't increase, and that `test_none_context_chunk_text` specifically now passes.
+
 ### Edge cases
 What inputs or states should your fix handle gracefully?
 - A chunk with `"text": None` (the reported bug) — should be treated as empty text, not crash.
