@@ -34,13 +34,12 @@ I ran the existing test `test_none_context_chunk_text` in `tests/unit/test_faith
 ### Check-in 1 (mid-week)
 
 **Current progress:**
-[What have you implemented so far? Which sub-tasks from PLAN.md are done?]
+I have implemented the fix in `rag/evaluator/faithfulness_checker.py` by changing `chunk.get("text", "")` to `chunk.get("text") or ""`. I have run the existing test `test_none_context_chunk_text`, which now passes without raising a `TypeError`. I also ran the full test suite for `tests/unit/test_faithfulness_checker.py`, and all tests passed, confirming that my change did not break any other functionality.
 
 **Next steps:**
-[What are you working on for the rest of the week?]
+I have to run the full test suite for the entire project to ensure that my fix does not introduce any regressions. After confirming that all tests pass, I will prepare a pull request with a Conventional Commit message referencing issue #153.
 
 **Blockers:**
-[Anything slowing you down? Or leave blank.]
 
 ---
 
