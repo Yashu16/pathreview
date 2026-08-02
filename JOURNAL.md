@@ -45,7 +45,7 @@ I have to run the full test suite for the entire project to ensure that my fix d
 
 ### Check-in 2 (end of week)
 
-**PR link:** [link to your submitted pull request]
+**PR link:** https://github.com/ascherj/pathreview/pull/532
 
 **Branch:** `fix/153-context-chunk-text-error`
 
