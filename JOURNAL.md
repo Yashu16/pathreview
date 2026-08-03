@@ -53,8 +53,11 @@ I have to run the full test suite for the entire project to ensure that my fix d
 Previously, the `FaithfulnessChecker.check()` method would raise a `TypeError` when a context chunk had `{"text": None}`. I modified the code to handle `None` values gracefully by changing `chunk.get("text", "")` to `chunk.get("text") or ""`. This ensures that if the `text` field is `None`, it will be treated as an empty string, allowing the method to return a valid faithfulness score instead of crashing.
 
 **Tests added or updated:**
-- I did not add new tests, but I confirmed that the existing test `test_none_context_chunk_text` now passes with my fix. I also ran the full test suite for `tests/unit/test_faithfulness_checker.py` and verified that all tests passed, ensuring that my change did not introduce any regressions.
+- Modified test file: `tests/unit/test_faithfulness_checker.py`
+- Added a new test, `test_mixed_none_and_valid_text_chunks`, which verifies that a chunk with `text: None` doesn't prevent other valid-text chunks in the same list from contributing to the faithfulness score. I confirmed this new test fails with the original `TypeError` against the pre-fix code, and passes with my fix applied.
+- I also confirmed the existing test `test_none_context_chunk_text` (already present in this file, not written by me) now passes with my fix, and ran the full test suite for `tests/unit/test_faithfulness_checker.py` to verify no regressions.
 
 **Self-review confirmation:** [✅] make check passes  [✅] make test-unit passes
+*(Note: this codebase has pre-existing failures unrelated to my change — baseline documented in PLAN.md: `make test-unit` was 53 failed/375 passed before my fix, 52 failed/376 passed after; `make check` (lint) was 182 pre-existing errors before, 181 after. "Passes" here means my change introduces no new failures, not that the full codebase is clean.)*
 
 **Draft PR feedback received from:** "none"
